@@ -1,0 +1,42 @@
+# Laravel Core 
+/vendor
+/node_modules
+/public/build
+/public/hot
+/storage/*.key
+/storage/logs/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/views/*
+
+# Environment 
+.env
+.env.*
+auth.json
+
+#IDE 
+.vscode
+.idea
+.fleet
+.zed
+
+# OS 
+.DS_Store
+Thumbs.db
+
+# Python / Extraction
+__pycache__/
+*.pyc
+*.pyo
+*.ipynb
+
+# Data Exports
+*.csv
+*.xlsx
+*.parquet
+
+#Extraction Work
+/extraction_work/
+
+#  Logs 
+*.log
