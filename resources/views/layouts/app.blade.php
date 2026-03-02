@@ -6,19 +6,28 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Prevent theme flash -->
+<script>
+if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark-mode");
+}
+</script>
+
 <style>
 
-/* ===== COLOR VARIABLES ===== */
-:root {
-    --bg-main: #f5f5f5;
-    --bg-hero: #f2f2f2;
-    --text-main: #111;
-    --text-muted: #444;
+/* THEME VARIABLES*/
 
-    --nav-bg: #e5e5e5;      /* TOP BAR */
-    --footer-bg: #e5e5e5;   /* SAME AS NAV */
+:root {
+    --bg-main: #ffffff;
+    --bg-hero: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #475569;
+
+    --nav-bg: #ffffff;
+    --footer-bg: #f8fafc;
 
     --card-bg: #ffffff;
+    --border-light: #e2e8f0;
 }
 
 
@@ -28,34 +37,45 @@
     --text-main: #f5f5f5;
     --text-muted: #bbbbbb;
 
-    --nav-bg: #1a1a1a;      /* TOP BAR DARK */
-    --footer-bg: #1a1a1a;   /* SAME AS NAV */
+    --nav-bg: #1a1a1a;
+    --footer-bg: #1a1a1a;
 
     --card-bg: #1f1f1f;
+    --border-light: rgba(26,26,26,0.08);
 }
 
-/* ===== GLOBAL ===== */
+/* GLOBAL */
+
+* {
+    box-sizing: border-box;
+}
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
+    padding-top: 80px;
+    font-family: Arial, sans-serif;
+
     background: var(--bg-main);
     color: var(--text-main);
-    transition: 0.3s;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
-
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 
 nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: var(--nav-bg);
     padding: 18px 40px;
+    border-bottom: 1px solid var(--border-light);
+    z-index: 1000;
 }
 
 .nav-wrapper {
     max-width: 1200px;
-    margin: auto;
-
+    margin: auto; 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -67,190 +87,151 @@ nav a {
     text-decoration: none;
     font-weight: bold;
     font-size: 14px;
-}
-
-
-/* ===== THEME BUTTON ===== */
+} 
 
 .theme-toggle {
     cursor: pointer;
     padding: 8px 14px;
-    border: 1px solid var(--text-main);
+    border: 1px solid var(--border-light);
     border-radius: 6px;
     font-size: 13px;
     background: transparent;
     color: var(--text-main);
 }
 
-
-/* ===== CONTAINER ===== */
+/* CONTAINER */
 
 .container {
     max-width: 1400px;
     margin: auto;
 }
 
-
-/* ===== HERO ===== */
+/* HERO SECTION */
 
 .hero {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
+    justify-content: space-between; 
     padding: 8vw 6vw;
-    background: var(--bg-hero);
-
+    background: var(--bg-hero); 
     gap: 4vw;
-    flex-wrap: wrap;
-}
-
-
-/* ===== HERO LEFT ===== */
+    border-bottom: 1px solid var(--border-light);
+} 
 
 .hero-left {
-    flex: 1 1 500px;
-    min-width: 320px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    gap: 28px;   /* MASTER SPACING */
+    flex: 1;
+    min-width: 300px;
 }
-
-
-/* ===== HEADLINE ===== */
 
 .hero-left h1 {
     font-size: clamp(36px, 4vw, 64px);
     line-height: 1.1;
-    margin: 0;
-}
-
-
-/* ===== PARAGRAPH ===== */
+    margin: 0 0 20px 0;
+} 
 
 .hero-left p {
     font-size: clamp(16px, 1.4vw, 20px);
     color: var(--text-muted);
     max-width: 520px;
     line-height: 1.6;
-    margin: 0;
-}
+} 
 
-
-/* ===== BUTTON GROUP ===== */
+/* BUTTONS */
 
 .hero-buttons {
+    margin-top: 25px;
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
-}
-
-
-/* ===== BUTTONS ===== */
+} 
 
 .btn-primary {
-    background: var(--text-main);
-    color: var(--bg-main);
-    padding: 16px 30px;
+    background: #28ae2f;
+    color: #ffffff;
+    padding: 14px 28px;
     border-radius: 6px;
     text-decoration: none;
     font-weight: bold;
 }
 
 .btn-secondary {
-    border: 1.5px solid var(--text-main);
-    padding: 16px 30px;
+    border: 1.5px solid var(--border-light);
+    padding: 14px 28px;
     border-radius: 6px;
     text-decoration: none;
     color: var(--text-main);
 }
 
+/* MARKET TOGGLE BUTTON */
 
-/* ===== HERO IMAGE ===== */
+.toggle-btn {
+    padding: 10px 20px;
+    border: 1px solid var(--border-light);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--text-main);
+    background: transparent;
+    margin: 0 10px;
+    transition: all 0.2s ease;
+}
+
+.toggle-btn:hover {
+    background: var(--border-light);
+}
+
+.toggle-btn.active {
+    background: var(--text-main);
+    color: var(--bg-main);
+}
+
+/* DASHBOARD IMAGE SECTION */
 
 .hero-right {
-    flex: 1.2 1 600px;
+    flex: 1;
     display: flex;
     justify-content: center;
 }
 
-.hero-right img {
+.dashboard-wrapper {
     width: 100%;
-    max-width: 1100px;   /* Bigger image */
-    border-radius: 14px;
+    max-width: 1100px;
+}
 
+.dashboard-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+}
+
+/* Light mode subtle shadow */
+body:not(.dark-mode) .dashboard-wrapper img {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+}
+
+/* Dark mode stronger shadow */
+.dark-mode .dashboard-wrapper img {
     box-shadow:
         0 20px 40px rgba(0,0,0,0.25),
         0 5px 15px rgba(0,0,0,0.15);
 }
 
-
-/* ===== PROBLEM SECTION ===== */
-
-.problem {
-    padding: 80px 6vw;
-}
-
-.problem h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
-}
-
-.problem p {
-    font-size: 17px;
-    color: var(--text-muted);
-    line-height: 1.6;
-    max-width: 800px;
-}
-
-
-/* ===== FOOTER ===== */
-/* ===== FOOTER ===== */
+/* FOOTER */
 
 footer {
     padding: 40px 20px;
-}
-
-
-/* Footer Container */
+} 
 
 .footer-box {
-
-    background: var(--footer-bg);   /* SAME AS NAVBAR */
-
-    max-width: 900px;
-    width: 100%;
-
+    background: var(--footer-bg);
+    max-width: 900px;  
     margin: auto;
-    padding: 24px;
-
+    padding: 24px; 
     border-radius: 10px;
     text-align: center;
-
-    border: 1px solid rgba(0,0,0,0.08);   /* Light subtle border */
-}
-
-
-/* Dark mode border fix */
-
-.dark-mode .footer-box {
-    border: 1px solid rgba(255,255,255,0.08);
-}
-
-
-/* Title */
-
-.footer-title {
-    font-size: 14px;
-    margin-bottom: 14px;
-    color: var(--text-main);
-}
-
-
-/* Links */
+    border: 1px solid var(--border-light);
+} 
 
 .footer-links {
     display: flex;
@@ -270,18 +251,45 @@ footer {
     opacity: 1;
 }
 
-</style>
+/* RESPONSIVE BREAKPOINT */
 
+@media (max-width: 1024px) {
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 24px;
+    }
+
+    .hero-left {
+        max-width: 100%;
+    }
+
+    .hero-left p {
+        margin: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-right {
+        margin-top: 40px;
+        width: 100%;
+    }
+
+    .dashboard-wrapper {
+        max-width: 100%;
+    }
+}
+
+</style> 
 </head>
 
-<body>
-
-
-<!-- ===== NAVBAR ===== -->
+<body> 
 
 <nav>
-    <div class="nav-wrapper">
-
+    <div class="nav-wrapper"> 
         <div>
             <a href="/">Home</a>
             <a href="/service">Service</a>
@@ -290,96 +298,56 @@ footer {
             <a href="/contact">Contact</a>
         </div>
 
-        <!-- 🌗 SMART TOGGLE -->
-        <button id="themeBtn" class="theme-toggle" onclick="toggleTheme()">
+        <button id="themeBtn" class="theme-toggle">
             🌙 Night Mode
-        </button>
-
+        </button> 
     </div>
-</nav>
-
-
-<!-- ===== PAGE CONTENT ===== -->
+</nav> 
 
 <div class="container">
     @yield('content')
 </div>
 
-
-<!-- ===== FOOTER ===== -->
-<footer>
-
+<footer> 
     <div class="footer-box">
-
-        <div class="footer-title">
+        <div style="font-size:14px;margin-bottom:14px;">
             Risk Intelligence — Not Investment Advisory
-        </div>
-
+        </div> 
         <div class="footer-links">
-
-            <a href="https://www.sebi.gov.in" target="_blank">
-                SEBI Official Website
-            </a>
-
-            <a href="https://investor.sebi.gov.in" target="_blank">
-                SEBI Investor Education
-            </a>
-
-            <a href="https://www.nseindia.com/invest/education" target="_blank">
-                NSE Risk Education
-            </a>
-
+            <a href="https://www.sebi.gov.in" target="_blank">SEBI Official Website</a>
+            <a href="https://investor.sebi.gov.in" target="_blank">SEBI Investor Education</a>
+            <a href="https://www.nseindia.com/invest/education" target="_blank">NSE Risk Education</a>
         </div>
-
-    </div>
-
-</footer>
-
-
-
-<!-- ===== DARK MODE SCRIPT ===== -->
+    </div> 
+</footer> 
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-const btn = document.getElementById("themeBtn");
+    const btn = document.getElementById("themeBtn");
 
-
-function toggleTheme() {
-
-    document.body.classList.toggle("dark-mode");
-
-    if (document.body.classList.contains("dark-mode")) {
-
-        localStorage.setItem("theme", "dark");
-        btn.innerHTML = "☀️ Day Mode";
-
-    } else {
-
-        localStorage.setItem("theme", "light");
-        btn.innerHTML = "🌙 Night Mode";
-
+    function setTheme(mode) {
+        if (mode === "dark") {
+            document.documentElement.classList.add("dark-mode");
+            btn.textContent = "☀️ Day Mode";
+        } else {
+            document.documentElement.classList.remove("dark-mode");
+            btn.textContent = "🌙 Night Mode";
+        }
     }
-}
 
+    btn.addEventListener("click", function () {
+        const isDark = document.documentElement.classList.contains("dark-mode");
+        const newMode = isDark ? "light" : "dark";
+        localStorage.setItem("theme", newMode);
+        setTheme(newMode);
+    });
 
-/* ===== LOAD SAVED THEME ===== */
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
 
-window.onload = function () {
-
-    if (localStorage.getItem("theme") === "dark") {
-
-        document.body.classList.add("dark-mode");
-        btn.innerHTML = "☀️ Day Mode";
-
-    } else {
-
-        btn.innerHTML = "🌙 Night Mode";
-
-    }
-};
-
+});
 </script>
-
-
+ 
 </body>
-</html>
+</html> 

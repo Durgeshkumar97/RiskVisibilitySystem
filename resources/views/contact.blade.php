@@ -4,8 +4,8 @@
 
 <h1>Contact</h1>
 
-<p>Email: support@riskintel.com</p>
-<p>LinkedIn: Your Profile</p>
+<p>Email: durgeshduklan5@gamil.com</p>
+<p>LinkedIn: https://www.linkedin.com/in/durgeshkumar3/</p>
 <p>Response Time: 24–48 hrs</p>
 
 @endsection

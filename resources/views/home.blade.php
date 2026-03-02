@@ -2,9 +2,7 @@
 
 @section('content')
 
-<!-- HERO WRAPPER (Fix ultra-wide left heaviness) -->
-<div class="hero-wrapper">
-
+<!-- HERO SECTION -->
 <section class="hero">
 
     <!-- LEFT CONTENT -->
@@ -21,23 +19,27 @@
 
         <!-- CTA BUTTONS -->
         <div class="hero-buttons">
+
             <a href="/intake" class="btn-primary">
                 Get Risk Scan
+            </a>
+
+            <a href="/investor-profile" class="btn-secondary">
+                Assess Your Risk Archetype
             </a>
 
             <a href="/sample-report" class="btn-secondary">
                 View Sample Report
             </a>
+
         </div>
 
         <!-- CREDIBILITY STRIP -->
         <div class="credibility-strip">
-
             <div>Sector Risk Models</div>
             <div>Correlation Mapping</div>
             <div>Regime Analysis</div>
             <div>Institutional Frameworks</div>
-
         </div>
 
     </div>
@@ -45,28 +47,32 @@
     <!-- RIGHT IMAGE -->
     <div class="hero-right">
 
-        <img
-            src="{{ asset('images/Hero_page_Image.png') }}"
-            alt="Portfolio Risk Dashboard Preview"
-        >
+        <div class="dashboard-wrapper">
+            <img
+                src="{{ asset('images/Hero_page_Image.png') }}"
+                alt="Portfolio Risk Dashboard Preview"
+            >
+        </div>
 
     </div>
 
 </section>
 
-</div>
-
 
 <!-- PROBLEM SECTION -->
 <section class="problem">
 
-    <h2>Hidden Risk Exists</h2>
+    <div class="problem-container">
 
-    <p>
-        Most traders assume diversification equals safety.
-        But capital often clusters across sectors, themes,
-        and liquidity regimes. Hidden exposure creates structural drawdowns.
-    </p>
+        <h2>Hidden Risk Exists</h2>
+
+        <p>
+            Most traders assume diversification equals safety.
+            But capital often clusters across sectors, themes,
+            and liquidity regimes. Hidden exposure creates structural drawdowns.
+        </p>
+
+    </div>
 
 </section>
 
